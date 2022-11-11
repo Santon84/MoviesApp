@@ -1,0 +1,22 @@
+
+
+ul {
+    display: flex;
+    gap:10px;
+    flex-wrap: wrap;
+  }
+.tabs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    list-style: none;
+    width: 60px;
+    height: 50px;
+    border: 1px #282c34 solid;
+  
+  }
+.tabs.active {
+    background-color: #282c34;
+    color: aliceblue;
+  }

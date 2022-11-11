@@ -1,0 +1,15 @@
+.top-menu {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.search-input {
+    height: 36px;
+    width: 340px;
+    min-width: 200px;
+    border: 1px solid #000;
+    border-radius: 25px;
+    padding-left: 15px;
+    font-size: 16px;
+}
