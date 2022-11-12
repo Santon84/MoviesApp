@@ -1,5 +1,9 @@
 export const ALL_COUNTRIES  = [
     {
+    "id": '',
+    "country": "Все"
+    },
+    {
       "id": 1,
       "country": "США"
     },
