@@ -13,10 +13,15 @@ function Modal({setSelectedFilmInfo, showModal, setShowModal, filmInfo, descript
     setShowModal(false);
 
  }
-  
+ function onModalClick(e) {
+
+    if (e.target.className === 'modal show') {
+        setShowModal(false);
+    }
+ }
 
   return (
-        <div className={(showModal) ? 'modal show' : 'modal hide'}>
+        <div onClick={(e)=> onModalClick(e)} className={(showModal) ? 'modal show' : 'modal hide'}>
             <div className="modal-window">
                 <button id="modal-movie-close-btn" className="modal-close-button" onClick={() => onCloseClick()} >&times;</button>
                 <div className="modal-movie-conteiner">

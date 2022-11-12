@@ -44,7 +44,7 @@
     flex-wrap: wrap;
 }
 .modal_movie-info {
-    
+    text-align: left;
     display: flex;
     flex-direction: column;
     gap: 10px;
