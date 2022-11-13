@@ -6,12 +6,12 @@ import getMovies from '../../services/GetMoviesData';
 import { ALL_COUNTRIES, ALL_GENRES, ALL_TYPES, API_KEY,TOP_MOVIES } from '../../consts';
 
 
-function Menu({setSelectedType, selectedType, setFilms, setCurrentUrl , setPageCount, setCurrentPage, setIsLoading}) {
+function Menu({globalUrl, setSelectedType, selectedType, setFilms, setCurrentUrl , setPageCount, setCurrentPage, setIsLoading}) {
 
 const [selectedGenre, setSelectedGenre] = React.useState('');
 const [selectedYear, setSelectedYear] = React.useState('');
 const [selectedCountry, setSelectedCountry] = React.useState('');
-
+const [selectedTop, setSelectedTop] = React.useState('top100');
 
 async function getData() {
   const ratingFrom = '',
@@ -59,8 +59,12 @@ async function getData() {
   } 
   
   React.useEffect(() => {
-    console.log(selectedGenre)
-  },[selectedGenre])
+    
+    if (globalUrl !== TOP_MOVIES.top_100 && globalUrl !== TOP_MOVIES.top_250) {
+      setSelectedTop('');
+    }
+
+  },[globalUrl])
   
 
   return (
@@ -75,15 +79,17 @@ async function getData() {
                           e.preventDefault();
                           setCurrentUrl(TOP_MOVIES.top_250)
                           setCurrentPage(1);
+                          setSelectedTop('top250');
                         }
-                        }className="filter-link top" data-url="top_250">TOP 250</a>
+                        }className={selectedTop === 'top250' ? "filter-link top active" : "filter-link top"} data-url="top_250">TOP 250</a>
                         <a href='#top-100' onClick={(e)=> {
                           
                           e.preventDefault();
                           setCurrentUrl(TOP_MOVIES.top_100)
                           setCurrentPage(1);
+                          setSelectedTop('top100');
                         }
-                        } className="filter-link top" data-url="top_100">TOP 100</a>
+                        } className={selectedTop === 'top100' ? "filter-link top active" : "filter-link top"} data-url="top_100">TOP 100</a>
                     </div>
                   <div className='filter-fields'>
                     <DropdownField fieldName='Тип' setSelectedValue={setSelectedType} selectedValue={selectedType} dataList={ALL_TYPES} valueFieldName='value' />

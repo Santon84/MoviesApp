@@ -131,7 +131,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Menu setSelectedType={setSelectedType} selectedType={selectedType} setIsLoading={setIsLoading} setFilms={setFilms} setPageCount={setPageCount} setCurrentUrl={setCurrentUrl} setCurrentPage={setCurrentPage}/>
+      <Menu globalUrl ={currentUrl} setSelectedType={setSelectedType} selectedType={selectedType} setIsLoading={setIsLoading} setFilms={setFilms} setPageCount={setPageCount} setCurrentUrl={setCurrentUrl} setCurrentPage={setCurrentPage}/>
       <Main setSelectedFilmInfo={setSelectedFilmInfo} setShowModal={setShowModal} selectedType={selectedType} active={active} isLoading={isLoading} movies={films} fields={currentFields}/>
 
       
