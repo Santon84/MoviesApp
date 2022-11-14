@@ -68,7 +68,7 @@
 
 }
 select {
-    -webkit-border-radius:25px;
+    
     width: 150px;
     font-size: 14px;
     padding: 6px 8px;
@@ -92,5 +92,8 @@ flex-direction: column;
     .filter-fields {
         flex-wrap: wrap;
     }
-    
+    select {
+    -webkit-border-radius:0;
+    border-radius: 0;
+    }
 }
