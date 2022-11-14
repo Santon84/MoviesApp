@@ -10,9 +10,9 @@ function Header() {
     <header className="top-menu">
             <div className="logo">MovieApp</div>
             <div className="search">
-                <form action="">
+                {/* <form action="">
                     <input className="search-input" type="text" />
-                </form>
+                </form> */}
             </div>
         </header>
   );
