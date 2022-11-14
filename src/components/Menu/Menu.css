@@ -1,3 +1,7 @@
+*{
+    box-sizing: border-box;
+}
+
 .link-cloud {
     display: flex;
     font-size: 24px;

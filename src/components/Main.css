@@ -1,3 +1,7 @@
+*{
+    box-sizing: border-box;
+}
+
 .movie {
     position: relative;
     margin: 1rem;
