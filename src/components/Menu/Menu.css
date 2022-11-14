@@ -82,3 +82,10 @@ flex-direction: column;
     /* flex-direction: column; */
     padding-bottom: 30px;
 }
+
+@media (max-width:780px) {
+    .filter-fields {
+        flex-wrap: wrap;
+    }
+    
+}
