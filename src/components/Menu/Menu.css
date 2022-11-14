@@ -35,8 +35,8 @@
 .filter-link {
     color: black;
     background-color: #fff;
-    border-radius: 16px;
-    padding: 6px 12px;
+    
+    
     line-height: 16px;
     border: 1px rgb(248, 60, 60) solid;
     font-size: 13px;
@@ -47,7 +47,7 @@
     
     width: 100%;
     padding-left: 12px;
-    flex-shrink: 0;
+    
 
 }
 
@@ -91,11 +91,13 @@ flex-direction: column;
 @media (max-width:780px) {
     .filter-fields {
         flex-wrap: wrap;
+        gap: 0;
+    }
+    .filter-field {
+        padding: 10px;
     }
     select {
     -webkit-border-radius:0;
     border-radius: 0;
-    padding: 10px;
-    gap:0;
     }
 }
