@@ -95,5 +95,7 @@ flex-direction: column;
     select {
     -webkit-border-radius:0;
     border-radius: 0;
+    padding: 10px;
+    gap:0;
     }
 }
