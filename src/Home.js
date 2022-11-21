@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from './components/Header';
+
 import Main from './components/Main';
 import Menu from './components/Menu/Menu';
 import Pagination from './components/Pagination';
@@ -75,33 +75,7 @@ function Home({setMovieId}) {
   React.useEffect(() => {
     setActive(currentPage);
   },[currentPage])
-  // function getMovies(url, API_KEY) {
-
-  //   setIsLoading(true);
-  //   if (!API_KEY) {
-  //       alert('No API Key! Please check parameters');
-  //       return;
-  //   }
-  //   fetch(url+'&page='+currentPage, {
-  //               method: 'GET',
-  //               headers: {
-  //                 'X-API-KEY': API_KEY,
-  //                 'Content-Type': 'application/json',
-  //               }
-  //   })
-  //   .then(res => res.json())
-  //   .then(json => {
-  //       console.log(json);
-  //       setFilms(json.films);
-  //       console.log(json.pagesCount);
-  //       setPageCount(json.pagesCount);
-  //   })
-  //   .catch(err => {
-  //       alert('Failed to fetch data')
-  //       console.log(err)
-  //   })
-  //   .finally(() => setIsLoading(false))
-  // }
+  
 
   React.useEffect(() => {
   
@@ -133,7 +107,7 @@ function Home({setMovieId}) {
   
   return (
     <>
-      <Header />
+      
       
       
       <Menu globalUrl ={currentUrl} setSelectedType={setSelectedType} selectedType={selectedType} setIsLoading={setIsLoading} setFilms={setFilms} setPageCount={setPageCount} setCurrentUrl={setCurrentUrl} setCurrentPage={setCurrentPage}/>
