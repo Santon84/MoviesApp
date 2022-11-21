@@ -13,7 +13,11 @@ return fetch(url, {
               'Content-Type': 'application/json',
             }
 })
-.then(res => res.json())
+.then(res => {
+    console.log('response');
+    console.log(res.response)
+    return res.json();
+})
 .then(json => {
     console.log(json);
     console.log(url);
@@ -22,7 +26,10 @@ return fetch(url, {
 })
 .catch(err => {
     alert('Failed to fetch data')
+    console.log('------------------message start');
+    console.log(err.message)
     console.log(err)
+    console.log('------------------message end');
 })
 
 

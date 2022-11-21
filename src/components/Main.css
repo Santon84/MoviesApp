@@ -45,7 +45,14 @@
     grid-template-columns: repeat(auto-fit, minmax(200px, 370px));
     gap: 20px;
     margin: 2rem;
-    justify-items: center;
+    justify-content: center;
+}
+@media (min-width: 780px) {
+    .movies-conteiner {
+
+        grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
+
+    }
 }
 
 .page {
