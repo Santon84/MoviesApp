@@ -31,7 +31,20 @@
     
     background-color: rgb(248, 60, 60);
 }
+.ranges-wrapper {
+    max-width: 700px ;
+    font-size: 14px;
+    font-weight: 400;
+    display: flex;
+    gap:50px;
+    
+}
+.ranges-wrapper h3 {
+    
+    font-weight: 400;
 
+    
+}
 .filter-link {
     color: black;
     background-color: #fff;

@@ -1,6 +1,6 @@
 import React from 'react'
 import './Main.css';
-import { ALL_TYPES, API_KEY } from '../consts';
+import { ALL_TYPES } from '../consts';
 
 import {Link} from 'react-router-dom';
 

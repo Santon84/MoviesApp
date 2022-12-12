@@ -69,6 +69,7 @@ function Home({setMovieId}) {
   const onActiveClick = (cur) => {
     setActive(cur);
     setCurrentPage(cur);
+    window.scrollTo(0,200);
   }
 
 

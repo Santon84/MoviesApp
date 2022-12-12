@@ -1,39 +1,31 @@
 import React from 'react'
 import './Menu.css';
 import DropdownField from './DropdownField';
-import YearsField from './YearsField';
+
 import getMovies from '../../services/GetMoviesData';
 import { ALL_COUNTRIES, ALL_GENRES, ALL_TYPES, API_KEY,TOP_MOVIES } from '../../consts';
-
+import RangeSelector from './RangeSelector';
 
 function Menu({globalUrl, setSelectedType, selectedType, setFilms, setCurrentUrl , setPageCount, setCurrentPage, setIsLoading}) {
 
 const [selectedGenre, setSelectedGenre] = React.useState('');
-const [selectedYear, setSelectedYear] = React.useState('');
+const [selectedYear, setSelectedYear] = React.useState({});
 const [selectedCountry, setSelectedCountry] = React.useState('');
 const [selectedTop, setSelectedTop] = React.useState('top100');
+const [selectedRating, setSelectedRating] = React.useState({});
+
 
 async function getData() {
-  const ratingFrom = '',
-        ratingTo = '10',
+  console.log(selectedRating)
+  const ratingFrom = parseInt(selectedRating.start) || '5',
+        ratingTo = parseInt(selectedRating.end) || '10',
         sorting = '&order=RATING';
   setIsLoading(true);
   setCurrentPage(1);
-  let yearStart = '',
-      yearEnd = '';
-  if (selectedYear.length > 8) {
-    const years = selectedYear.split(' - ');
-    yearStart = years[0];
-    yearEnd = years[1];
+  let yearStart = selectedYear.start ,
+      yearEnd = selectedYear.end;
 
-  }
-  if (selectedYear.length === 4) {
-
-    yearStart = selectedYear;
-    yearEnd = selectedYear;
-  }
-  
-  let currentUrl = `https://kinopoiskapiunofficial.tech/api/v2.2/films?countries=${selectedCountry}&genres=${selectedGenre}${sorting}&type=${selectedType}&ratingFrom=6&ratingTo=10&yearFrom=${yearStart}&yearTo=${yearEnd}`
+  let currentUrl = `https://kinopoiskapiunofficial.tech/api/v2.2/films?countries=${selectedCountry}&genres=${selectedGenre}${sorting}&type=${selectedType}&ratingFrom=${ratingFrom}&ratingTo=${ratingTo}&yearFrom=${yearStart}&yearTo=${yearEnd}`
 
  
 
@@ -66,6 +58,9 @@ async function getData() {
 
   },[globalUrl])
   
+  React.useEffect(() => {
+    console.log(selectedYear)
+  },[selectedYear])
 
   return (
         <div className="side-filter">
@@ -91,11 +86,17 @@ async function getData() {
                         }
                         } className={selectedTop === 'top100' ? "filter-link top active" : "filter-link top"} data-url="top_100">TOP 100</a>
                     </div>
+                    <div className='ranges-wrapper'>
+                        
+                    <RangeSelector minVal={1960} maxVal={2022} step={1} title='Год' setFunction={setSelectedYear}/>
+                    <RangeSelector minVal={0} maxVal={10} step={0.1} title='Рейтинг' setFunction={setSelectedRating} />
+                    </div>
                   <div className='filter-fields'>
+                    
                     <DropdownField fieldName='Тип' setSelectedValue={setSelectedType} selectedValue={selectedType} dataList={ALL_TYPES} valueFieldName='value' />
                     <DropdownField fieldName='Жанры' setSelectedValue={setSelectedGenre} selectedValue={selectedGenre} dataList={ALL_GENRES} valueFieldName='genre' />
 
-                    <YearsField setSelectedYear = {setSelectedYear}/>
+                    
                     <DropdownField fieldName='Страны' setSelectedValue={setSelectedCountry} selectedValue={selectedCountry} dataList={ALL_COUNTRIES} valueFieldName='country' />
                    
                     <button className="button button-select" onClick={getData}>Выбрать</button>
