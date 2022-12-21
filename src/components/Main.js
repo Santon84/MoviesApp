@@ -4,7 +4,7 @@ import { ALL_TYPES } from '../consts';
 
 import {Link} from 'react-router-dom';
 
-function Main({ setMovieId, setSelectedFilmInfo, setShowModal, isLoading, movies, fields, selectedType}) {
+function Main({ setMovieId, isLoading, movies, fields, selectedType}) {
   
 
   async function onMovieClick (id) {
@@ -23,6 +23,7 @@ function Main({ setMovieId, setSelectedFilmInfo, setShowModal, isLoading, movies
     
 
     setMovieId(id);
+    console.log('MOVIE CLICK')
     console.log(id)
     
     

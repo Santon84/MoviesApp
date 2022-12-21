@@ -37,7 +37,17 @@ const [filmInfo, setFilmInfo] = React.useState({})
         ...prevState, 
         img: data.src, 
         name: data.title, 
-        descr: data.descr
+        descr: data.descr,
+        year : data.year,
+        webUrl : data.webUrl,
+        genres : data.genres,
+        countries : data.countries,
+        nameOriginal : data.nameOriginal,
+        filmLength : data.filmLength,
+        ratingAgeLimits : data.ratingAgeLimits,
+        ratingImdb : data.ratingImdb,
+        ratingKinopoisk : data.ratingKinopoisk,
+        slogan : data.slogan,
       }))
     })
 
@@ -55,11 +65,18 @@ const [filmInfo, setFilmInfo] = React.useState({})
                 <div className="modal-movie-conteiner">
                     <div className="movie-page__image" style={{backgroundImage: `url(${filmInfo.img})`}}></div>
                     <div className="movie-page-info">
-                        <h1 className="movie-page__title">{filmInfo.name}</h1>
+                        <h1 className="movie-page__title">{filmInfo?.name}</h1>
                     
-                        <div className="modal_movie-info-year"></div>
-                        <div className="modal_movie-info-genre"></div>
-                        <div className="modal_descr">{filmInfo.descr}</div>
+                        <div className="movie-page__nameOrig">{filmInfo?.nameOriginal}</div>
+                        <div className="movie-page__length">{'Продолжительность: '+ (filmInfo?.filmLength || '') + ' мин'}</div>
+                        <div className="movie-page__imdb">{'IMDB: '+ (filmInfo?.ratingImdb || '')}</div>
+                        <div className="movie-page__kinopoisk">{'Кинопоиск: '+ (filmInfo?.ratingKinopoisk || '')}</div>
+                        <div className="movie-page__year">{filmInfo?.year}</div>
+                        <div className="movie-page__genres">{filmInfo?.genres?.map(genre => genre.genre).join(',')}</div>
+                        <div className="movie-page__countries">{filmInfo?.countries?.map(country => country.country).join(',')}</div>
+                        <div className="movie_descr">Описание фильма</div>
+                        <div className="movie_descr">{filmInfo?.descr}</div>
+                        <a href={filmInfo?.webUrl}>{filmInfo?.webUrl}</a>
                     </div>
                     
                 </div>

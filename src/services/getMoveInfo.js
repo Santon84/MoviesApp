@@ -20,9 +20,23 @@ function getMoveInfo(id, API_KEY) {
     }).then(response => response.json())
     .then((data) => {
         const renderData = {};
+        console.log(data);
         renderData.descr = data.description;
         renderData.title = data.nameRu;
-        renderData.src = data.posterUrlPreview;
+        renderData.src = data.posterUrl;
+        renderData.nameOriginal = data.nameOriginal;
+        renderData.filmLength = data.filmLength;
+        renderData.ratingAgeLimits = data.ratingAgeLimits;
+        renderData.ratingImdb = data.ratingImdb;
+        renderData.ratingKinopoisk = data.ratingKinopoisk;
+        renderData.slogan = data.slogan;
+        renderData.year = data.year;
+        renderData.webUrl = data.webUrl;
+        renderData.genres = data.genres;
+        renderData.countries = data.countries;
+
+
+
         return renderData;
     })
     .catch(err => {

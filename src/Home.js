@@ -7,6 +7,7 @@ import Modal from './components/Modal';
 import getMovies from './services/GetMoviesData';
 import { API_KEY } from './consts'
 import './App.css';
+import { useNavigate } from 'react-router-dom';
 
 
  
@@ -25,7 +26,9 @@ class fieldsConstructor {
 
 }
 
-const topMovieFilds = new fieldsConstructor({
+
+
+const topMovieFields = new fieldsConstructor({
   id: 'filmId',
   array: 'films',
   rating: 'rating',
@@ -36,7 +39,7 @@ const topMovieFilds = new fieldsConstructor({
   pageCount: 'pagesCount'
 
 })
-const filterMovieFilds = new fieldsConstructor({
+const filterMovieFields = new fieldsConstructor({
   id: 'kinopoiskId',
   array: 'items',
   rating: 'ratingKinopoisk',
@@ -52,10 +55,18 @@ const filterMovieFilds = new fieldsConstructor({
 
 function Home({setMovieId}) {
 
+
+  const setFilterFields = () => {
+    setCurrentFields(filterMovieFields);
+  }
+  const setTopFields = () => {
+    setCurrentFields(topMovieFields);
+  }
+  
   const baseUrl = 'https://kinopoiskapiunofficial.tech/api/v2.2/';
   //let currentUrl = 'https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS';
   
-  const [currentFields, setCurrentFields] = React.useState(topMovieFilds);
+  const [currentFields, setCurrentFields] = React.useState(topMovieFields);
   
   const [selectedType, setSelectedType] = React.useState('FILM');
   const [active, setActive] = React.useState(1);
@@ -66,9 +77,13 @@ function Home({setMovieId}) {
   const [currentPage, setCurrentPage] = React.useState(1);
   const [showModal, setShowModal] = React.useState(false);
   const [selectedFilmInfo, setSelectedFilmInfo] = React.useState({descr: '', name:'', img:''});
+  
+  let navigate = useNavigate();
   const onActiveClick = (cur) => {
     setActive(cur);
     setCurrentPage(cur);
+    
+    navigate('/page/'+cur);
     window.scrollTo(0,200);
   }
 
@@ -111,7 +126,7 @@ function Home({setMovieId}) {
       
       
       
-      <Menu globalUrl ={currentUrl} setSelectedType={setSelectedType} selectedType={selectedType} setIsLoading={setIsLoading} setFilms={setFilms} setPageCount={setPageCount} setCurrentUrl={setCurrentUrl} setCurrentPage={setCurrentPage}/>
+      <Menu setFilterFields={setFilterFields} setTopFields={setTopFields} globalUrl ={currentUrl} setSelectedType={setSelectedType} selectedType={selectedType} setIsLoading={setIsLoading} setFilms={setFilms} setPageCount={setPageCount} setCurrentUrl={setCurrentUrl} setCurrentPage={setCurrentPage}/>
       <Main setMovieId={setMovieId} setSelectedFilmInfo={setSelectedFilmInfo} setShowModal={setShowModal} selectedType={selectedType} active={active} isLoading={isLoading} movies={films} fields={currentFields}/>
 
       

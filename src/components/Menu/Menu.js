@@ -6,7 +6,7 @@ import getMovies from '../../services/GetMoviesData';
 import { ALL_COUNTRIES, ALL_GENRES, ALL_TYPES, API_KEY,TOP_MOVIES } from '../../consts';
 import RangeSelector from './RangeSelector';
 
-function Menu({globalUrl, setSelectedType, selectedType, setFilms, setCurrentUrl , setPageCount, setCurrentPage, setIsLoading}) {
+function Menu({setFilterFields, setTopFields, globalUrl, setSelectedType, selectedType, setFilms, setCurrentUrl , setPageCount, setCurrentPage, setIsLoading}) {
 
 const [selectedGenre, setSelectedGenre] = React.useState('');
 const [selectedYear, setSelectedYear] = React.useState({});
@@ -16,6 +16,7 @@ const [selectedRating, setSelectedRating] = React.useState({});
 
 
 async function getData() {
+  setFilterFields();
   console.log(selectedRating)
   const ratingFrom = parseInt(selectedRating.start) || '5',
         ratingTo = parseInt(selectedRating.end) || '10',
@@ -58,9 +59,7 @@ async function getData() {
 
   },[globalUrl])
   
-  React.useEffect(() => {
-    console.log(selectedYear)
-  },[selectedYear])
+
 
   return (
         <div className="side-filter">
@@ -75,6 +74,7 @@ async function getData() {
                           setCurrentUrl(TOP_MOVIES.top_250)
                           setCurrentPage(1);
                           setSelectedTop('top250');
+                          setTopFields();
                         }
                         }className={selectedTop === 'top250' ? "filter-link top active" : "filter-link top"} data-url="top_250">TOP 250</a>
                         <a href='#top-100' onClick={(e)=> {
@@ -83,6 +83,7 @@ async function getData() {
                           setCurrentUrl(TOP_MOVIES.top_100)
                           setCurrentPage(1);
                           setSelectedTop('top100');
+                          setTopFields();
                         }
                         } className={selectedTop === 'top100' ? "filter-link top active" : "filter-link top"} data-url="top_100">TOP 100</a>
                     </div>

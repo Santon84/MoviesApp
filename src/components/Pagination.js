@@ -1,4 +1,5 @@
 import React from 'react'
+
 import './Pagination.css';
 
 function Pagination({pageCount, currentActive, onActiveClick}) {
@@ -11,12 +12,14 @@ function Pagination({pageCount, currentActive, onActiveClick}) {
     <div>
         <ul>
       {pages.map((page) => (
+        
         <li
           onClick={() => onActiveClick(page)}
           className={currentActive === page ? 'tabs active' : 'tabs'}
           key={page}>
           {page}
-        </li>
+        </li> 
+        
       ))}
          
       </ul> 
