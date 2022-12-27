@@ -48,6 +48,7 @@ const [filmInfo, setFilmInfo] = React.useState({})
         ratingImdb : data.ratingImdb,
         ratingKinopoisk : data.ratingKinopoisk,
         slogan : data.slogan,
+        kinopoiskId : data.kinopoiskId
       }))
     })
 
@@ -78,7 +79,8 @@ const [filmInfo, setFilmInfo] = React.useState({})
                         <div className="movie_descr">{filmInfo?.descr}</div>
                         <a href={filmInfo?.webUrl}>{filmInfo?.webUrl}</a>
                     </div>
-                    
+                    <div data-kinopoisk={filmInfo.kinopoiskId} id="kinobd"></div>
+                    <script src="https://kinobd.ru/js/player_.js"></script>
                 </div>
                 
             </div>

@@ -34,7 +34,7 @@ function getMoveInfo(id, API_KEY) {
         renderData.webUrl = data.webUrl;
         renderData.genres = data.genres;
         renderData.countries = data.countries;
-
+        renderData.kinopoiskId = data.kinopoiskId;
 
 
         return renderData;
