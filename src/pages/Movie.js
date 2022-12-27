@@ -3,7 +3,7 @@ import {API_KEY} from '../consts'
 import getMoveInfo from '../services/getMoveInfo'
 import { useParams, useNavigate } from "react-router-dom"
 import './Movie.css'
-
+import Poster from '../components/Movie/Poster'
 
 const Movie = ({movieId}) => {
 const { idParam } = useParams()
@@ -64,7 +64,7 @@ const [filmInfo, setFilmInfo] = React.useState({})
             <div className="movie-page">
               
                 <div className="modal-movie-conteiner">
-                    <div className="movie-page__image" style={{backgroundImage: `url(${filmInfo.img})`}}></div>
+                    <Poster imageSrc={filmInfo.img} />
                     <div className="movie-page-info">
                         <h1 className="movie-page__title">{filmInfo?.name}</h1>
                     
@@ -79,10 +79,9 @@ const [filmInfo, setFilmInfo] = React.useState({})
                         <div className="movie_descr">{filmInfo?.descr}</div>
                         <a href={filmInfo?.webUrl}>{filmInfo?.webUrl}</a>
                     </div>
-                    <div data-kinopoisk={filmInfo.kinopoiskId} id="kinobd"></div>
-                    <script src="https://kinobd.ru/js/player_.js"></script>
+                    
+                    
                 </div>
-                
             </div>
         </div>
   )
