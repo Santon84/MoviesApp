@@ -1,7 +1,7 @@
 import React from 'react'
 import './Menu.css';
 import DropdownField from './DropdownField';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import getMovies from '../../services/GetMoviesData';
 import { ALL_COUNTRIES, ALL_GENRES, ALL_TYPES, API_KEY,TOP_MOVIES } from '../../consts';
 import RangeSelector from './RangeSelector';
@@ -14,7 +14,7 @@ const [selectedCountry, setSelectedCountry] = React.useState('');
 const [selectedTop, setSelectedTop] = React.useState('top100');
 const [selectedRating, setSelectedRating] = React.useState({});
 
-const history = useNavigate();
+//const history = useNavigate();
 async function getData() {
   setFilterFields();
   console.log(selectedRating)
