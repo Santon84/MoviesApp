@@ -1,5 +1,5 @@
 
-import Home from './Home';
+import Home from './pages/Home';
 import Movie from './pages/Movie';
 import React from 'react'
 import Header from './components/Header';

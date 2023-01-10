@@ -10,34 +10,16 @@ const { idParam } = useParams()
 console.log(movieId)
 const [filmInfo, setFilmInfo] = React.useState({})
 
-// async function getMovieData (id) {
-//   console.log('1 '+ id)
-//     await getMoveInfo(id,API_KEY)
-//     .then(data => { 
-//       setFilmInfo(prevState => ({
-//         ...prevState, 
-//         img: data.src, 
-//         name: data.title, 
-//         descr: data.descr
-//       }))
-      
-//       console.log(filmInfo)
-//     })
-    
-    
-//   }
-//   getMovieData(idParam)
-
 
   useEffect( () => {
     window.scrollTo(0, 0)
     getMoveInfo(idParam,API_KEY)
     .then(data => { 
-      setFilmInfo(prevState => ({
-        ...prevState, 
-        img: data.src, 
-        name: data.title, 
-        descr: data.descr,
+      setFilmInfo({
+        
+        img: data.posterUrl, 
+        name: data.nameRu, 
+        descr: data.description,
         year : data.year,
         webUrl : data.webUrl,
         genres : data.genres,
@@ -49,9 +31,10 @@ const [filmInfo, setFilmInfo] = React.useState({})
         ratingKinopoisk : data.ratingKinopoisk,
         slogan : data.slogan,
         kinopoiskId : data.kinopoiskId
-      }))
+      })
     })
-
+    return setFilmInfo({});
+    
   },[idParam])
   let history = useNavigate();
   

@@ -9,25 +9,9 @@ function Main({ setMovieId, isLoading, movies, fields, selectedType}) {
 
   async function onMovieClick (id) {
 
-    // await getMoveInfo(id,API_KEY)
-    // .then(data => {
-    //   setSelectedFilmInfo(prevState => ({
-    //     ...prevState, 
-    //     img: data.src, 
-    //     name: data.title, 
-    //     descr: data.descr
-    //   }))
-    //   console.log(data)})
-    // .finally(setShowModal(true))
-    
-    
-
     setMovieId(id);
     console.log('MOVIE CLICK')
     console.log(id)
-    
-    
-    
 
   }
 
@@ -48,13 +32,13 @@ movies.map((movie, index) => {
               <p className="movie-title">{movie[fields.nameRu] ?? movie[fields.nameOrig]}</p>
               </Link>
               <p className="movie-genre">{movie[fields.year] || ''}, {movie[fields.genre].map(genre => genre.genre).join(', ')}</p> 
-              <div className="movie-rating">{parseInt(movie[fields.rating])>10 && movie[fields.rating] ? '' : movie[fields.rating]}</div>
+              <div className="movie-rating">{parseInt(movie[fields.rating])>10 && movie[fields.rating] ? '0.0' : movie[fields.rating]}</div>
             </div>
         
         )
   
   
-  // <li key={index}>{movie.nameRu}</li>
+
   
   })
 }

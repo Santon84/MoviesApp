@@ -1,12 +1,12 @@
 import React from 'react'
 
-import Main from './components/Main';
-import Menu from './components/Menu/Menu';
-import Pagination from './components/Pagination';
-import Modal from './components/Modal';
-import getMovies from './services/GetMoviesData';
-import { API_KEY } from './consts'
-import './App.css';
+import Main from '../components/Main';
+import Menu from '../components/Menu/Menu';
+import Pagination from '../components/Pagination';
+import Modal from '../components/Modal';
+import getMovies from '../services/GetMoviesData';
+import { API_KEY } from '../consts'
+import '../App.css';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -79,10 +79,13 @@ function Home({setMovieId}) {
   const [selectedFilmInfo, setSelectedFilmInfo] = React.useState({descr: '', name:'', img:''});
   
   let navigate = useNavigate();
+
+
   const onActiveClick = (cur) => {
+    setIsLoading(true);
     setActive(cur);
     setCurrentPage(cur);
-    
+    navigate.push('/page/'+cur);
     navigate('/page/'+cur);
     window.scrollTo(0,200);
   }

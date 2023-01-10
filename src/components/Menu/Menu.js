@@ -1,7 +1,7 @@
 import React from 'react'
 import './Menu.css';
 import DropdownField from './DropdownField';
-
+import { useNavigate } from 'react-router-dom';
 import getMovies from '../../services/GetMoviesData';
 import { ALL_COUNTRIES, ALL_GENRES, ALL_TYPES, API_KEY,TOP_MOVIES } from '../../consts';
 import RangeSelector from './RangeSelector';
@@ -14,7 +14,7 @@ const [selectedCountry, setSelectedCountry] = React.useState('');
 const [selectedTop, setSelectedTop] = React.useState('top100');
 const [selectedRating, setSelectedRating] = React.useState({});
 
-
+const history = useNavigate();
 async function getData() {
   setFilterFields();
   console.log(selectedRating)
@@ -28,8 +28,8 @@ async function getData() {
 
   let currentUrl = `https://kinopoiskapiunofficial.tech/api/v2.2/films?countries=${selectedCountry}&genres=${selectedGenre}${sorting}&type=${selectedType}&ratingFrom=${ratingFrom}&ratingTo=${ratingTo}&yearFrom=${yearStart}&yearTo=${yearEnd}`
 
- 
 
+  
  
     await getMovies(currentUrl, API_KEY)
     .then(json => {
@@ -51,6 +51,23 @@ async function getData() {
       
   } 
   
+  function handleTop100Click(e) {
+    e.preventDefault();
+    //history('/top100');
+    setCurrentUrl(TOP_MOVIES.top_250)
+    setCurrentPage(1);
+    setSelectedTop('top250');
+    setTopFields();
+  };
+  function handleTop250Click(e) {
+    e.preventDefault();
+    //history('/top250');
+    setCurrentUrl(TOP_MOVIES.top_100)
+    setCurrentPage(1);
+    setSelectedTop('top100');
+    setTopFields();
+  };
+  
   React.useEffect(() => {
     
     if (globalUrl !== TOP_MOVIES.top_100 && globalUrl !== TOP_MOVIES.top_250) {
@@ -69,27 +86,18 @@ async function getData() {
                     <div className="link-cloud">
                        
                         <a href='#top-250' onClick={(e)=> {
+                          handleTop100Click(e);
                           
-                          e.preventDefault();
-                          setCurrentUrl(TOP_MOVIES.top_250)
-                          setCurrentPage(1);
-                          setSelectedTop('top250');
-                          setTopFields();
                         }
                         }className={selectedTop === 'top250' ? "filter-link top active" : "filter-link top"} data-url="top_250">TOP 250</a>
                         <a href='#top-100' onClick={(e)=> {
-                          
-                          e.preventDefault();
-                          setCurrentUrl(TOP_MOVIES.top_100)
-                          setCurrentPage(1);
-                          setSelectedTop('top100');
-                          setTopFields();
+                          handleTop250Click(e);
                         }
                         } className={selectedTop === 'top100' ? "filter-link top active" : "filter-link top"} data-url="top_100">TOP 100</a>
                     </div>
                     <div className='ranges-wrapper'>
                         
-                    <RangeSelector minVal={1960} maxVal={2022} step={1} title='Год' setFunction={setSelectedYear}/>
+                    <RangeSelector minVal={1960} maxVal={2023} step={1} title='Год' setFunction={setSelectedYear}/>
                     <RangeSelector minVal={0} maxVal={10} step={0.1} title='Рейтинг' setFunction={setSelectedRating} />
                     </div>
                   <div className='filter-fields'>
